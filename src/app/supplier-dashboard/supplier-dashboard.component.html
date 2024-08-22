@@ -1,0 +1,158 @@
+<div class="min-h-screen bg-gray-100 p-4">
+  <nav class="bg-white shadow-sm mb-4">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-900">Snappy Supplier Dashboard</h1>
+      <button (click)="navigateToLandingspage()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+        Logout
+      </button>
+    </div>
+  </nav>
+
+  <div class="grid grid-cols-4 gap-4 mb-4">
+    <div class="col-span-3 bg-white shadow rounded-lg p-4">
+      <h2 class="text-xl font-semibold text-gray-900 mb-4">Payment Collection Overview</h2>
+      <div style="display: block;">
+        <ngx-charts-bar-horizontal-2d
+        [view]="view"
+        [results]="chartData"
+        [xAxis]="true"
+        [yAxis]="true"
+        [legend]="true"
+        [showXAxisLabel]="true"
+        [showYAxisLabel]="true"
+        [gradient]="false"
+        xAxisLabel="Amount"
+        yAxisLabel="Months"
+        [scheme]="colorScheme">
+        </ngx-charts-bar-horizontal-2d>
+      </div>
+    </div>
+    <div class="space-y-4">
+      <app-infocard
+        icon="users"
+        label="Total Debtors"
+        [value]="paymentPlans.length"
+        bgColor="bg-blue-500">
+      </app-infocard>
+      <app-infocard
+        icon="credit-card"
+        label="Active Plans"
+        [value]=2
+        bgColor="bg-green-500">
+      </app-infocard>
+      <app-infocard
+        icon="trending-up"
+        label="Collection Rate"
+        value="92%"
+        bgColor="bg-yellow-500">
+      </app-infocard>
+    </div>
+  </div>
+
+  <div class="bg-white shadow rounded-lg p-4">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Payment Entry</h2>
+    <div class="flex space-x-2 mb-4">
+      <input
+        type="text"
+        name="reference"
+        [(ngModel)]="filters.reference"
+        placeholder="Reference"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="text"
+        name="debtor"
+        [(ngModel)]="filters.debtor"
+        placeholder="Debtor"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="text"
+        name="amount"
+        [(ngModel)]="filters.amount"
+        placeholder="Amount"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="date"
+        name="date"
+        [(ngModel)]="filters.date"
+        class="flex-1 p-2 border rounded-md">
+      <button
+        (click)="toggleAdvancedFilters()"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center">
+        <mat-icon class="mr-2">filter_list</mat-icon>
+        Filter
+      </button>
+    </div>
+
+    <app-advancedfilters
+      *ngIf="showAdvancedFilters"
+      [filters]="filters"
+      (filterChange)="handleFilterChange($event)"
+      (applyFilters)="applyFilters()">
+    </app-advancedfilters>
+
+    <div class="overflow-x-auto">
+      <table class="min-w-full divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+        <tr>
+          <th *ngFor="let header of tableHeaders" (click)="handleSort(header.key)">
+            <div class="flex items-center">
+              {{ header.label }}
+              <mat-icon *ngIf="sortConfig.key === header.key" class="ml-2">
+                {{ sortConfig.direction === 'ascending' ? 'arrow_upward' : 'arrow_downward' }}
+              </mat-icon>
+
+            </div>
+          </th>
+        </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+        <tr *ngFor="let plan of filteredAndSortedPlans" [ngClass]="{'bg-green-50': plan.status === 'Confirmed', 'bg-yellow-50': plan.status === 'Modified'}">
+          <td>{{ plan.reference }}</td>
+          <td>{{ plan.debtor }}</td>
+          <td>
+            <input type="number" [(ngModel)]="plan.amount" [disabled]="plan.status === 'Confirmed'" class="w-24 px-2 py-1 border rounded">
+          </td>
+          <td>
+            <input type="date" [(ngModel)]="plan.date" [disabled]="plan.status === 'Confirmed'" class="px-2 py-1 border rounded">
+          </td>
+          <td>{{ plan.status }}</td>
+          <td>
+            <button
+              (click)="handleProcessPayment(plan.id)"
+              [ngClass]="plan.status === 'Confirmed' ? 'bg-green-500 text-white hover:bg-green-600' : 'bg-gray-300 text-gray-500 cursor-not-allowed'"
+              [disabled]="plan.status !== 'Confirmed'"
+              class="px-3 py-1 rounded flex items-center"
+              [title]="plan.status === 'Confirmed' ? 'Process Payment' : 'Action not available'">
+              <mat-icon>check</mat-icon>
+            </button>
+          </td>
+        </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="grid grid-cols-3 gap-4 mt-4">
+    <app-actioncard
+      title="Create New Snappy"
+      buttonText="Create New Snappy"
+      icon="plus"
+      buttonClass="bg-blue-500 hover:bg-blue-600"
+      (click)="createNewSnappy()">
+    </app-actioncard>
+    <app-actioncard
+      title="Generate Report"
+      buttonText="Generate Report"
+      icon="file-text"
+      buttonClass="bg-green-500 hover:bg-green-600"
+      (click)="generateReport()">
+    </app-actioncard>
+    <app-actioncard
+      title="Settings"
+      buttonText="Settings"
+      icon="settings"
+      buttonClass="bg-gray-500 hover:bg-gray-600"
+      (click)="openSettings()">
+    </app-actioncard>
+  </div>
+</div>

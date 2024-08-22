@@ -1,0 +1,9 @@
+<div class="bg-white shadow rounded-lg p-4">
+  <h3 class="text-lg font-semibold text-gray-900 mb-4">{{ title }}</h3>
+  <button
+    [ngClass]="buttonClass + ' w-full text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center justify-center'"
+    (click)="onClick.emit()">
+    <mat-icon class="mr-2">{{ icon }}</mat-icon>
+    <span>{{ buttonText }}</span>
+  </button>
+</div>

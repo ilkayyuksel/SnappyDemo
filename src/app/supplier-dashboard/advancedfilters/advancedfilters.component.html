@@ -1,0 +1,41 @@
+<div class="mb-4 p-4 border rounded-md bg-gray-50">
+  <div class="grid grid-cols-2 gap-4">
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Amount Range</label>
+      <div class="flex space-x-2">
+        <input
+          type="number"
+          name="amountMin"
+          [(ngModel)]="filters.amountMin"
+          placeholder="Min"
+          class="flex-1 p-2 border rounded-md">
+        <input
+          type="number"
+          name="amountMax"
+          [(ngModel)]="filters.amountMax"
+          placeholder="Max"
+          class="flex-1 p-2 border rounded-md">
+      </div>
+    </div>
+    <div>
+      <label class="block text-sm font-medium text-gray-700">Date Range</label>
+      <div class="flex space-x-2">
+        <input
+          type="date"
+          name="dateMin"
+          [(ngModel)]="filters.dateMin"
+          class="flex-1 p-2 border rounded-md">
+        <input
+          type="date"
+          name="dateMax"
+          [(ngModel)]="filters.dateMax"
+          class="flex-1 p-2 border rounded-md">
+      </div>
+    </div>
+  </div>
+  <button
+    (click)="triggerApplyFilters()"
+    class="mt-4 bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+    Apply Filters
+  </button>
+</div>

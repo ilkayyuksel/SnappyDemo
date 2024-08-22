@@ -1,0 +1,163 @@
+<div class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 p-4">
+  <h1 class="text-2xl font-bold mb-4 text-blue-600 text-center">Snappy Debtor Registration</h1>
+
+  <form (submit)="handleSubmit($event)" class="space-y-4">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
+        <h2 class="text-xl font-semibold mb-3 text-blue-600">Personal Information</h2>
+        <div class="space-y-3">
+          <div>
+            <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+            <input
+              type="text"
+              id="lastName"
+              name="lastName"
+              [(ngModel)]="formData.lastName"
+              (input)="handleInputChange($event, 'lastName')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+            <input
+              type="text"
+              id="firstName"
+              name="firstName"
+              [(ngModel)]="formData.firstName"
+              (input)="handleInputChange($event, 'firstName')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              [(ngModel)]="formData.email"
+              (input)="handleInputChange($event, 'email')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="mobileNumber" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+            <input
+              type="tel"
+              id="mobileNumber"
+              name="mobileNumber"
+              [(ngModel)]="formData.mobileNumber"
+              (input)="handleInputChange($event, 'mobileNumber')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+        </div>
+      </div>
+
+      <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
+        <h2 class="text-xl font-semibold mb-3 text-blue-600">Address Details</h2>
+        <div class="space-y-3">
+          <div>
+            <label for="address" class="block text-sm font-medium text-gray-700">Address</label>
+            <input
+              type="text"
+              id="address"
+              name="address"
+              [(ngModel)]="formData.address"
+              (input)="handleInputChange($event, 'address')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="houseNumber" class="block text-sm font-medium text-gray-700">House Number</label>
+            <input
+              type="text"
+              id="houseNumber"
+              name="houseNumber"
+              [(ngModel)]="formData.houseNumber"
+              (input)="handleInputChange($event, 'houseNumber')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="postalCode" class="block text-sm font-medium text-gray-700">Postal Code</label>
+            <input
+              type="text"
+              id="postalCode"
+              name="postalCode"
+              [(ngModel)]="formData.postalCode"
+              (input)="handleInputChange($event, 'postalCode')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+          <div>
+            <label for="city" class="block text-sm font-medium text-gray-700">City</label>
+            <input
+              type="text"
+              id="city"
+              name="city"
+              [(ngModel)]="formData.city"
+              (input)="handleInputChange($event, 'city')"
+              class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+              required
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
+      <h2 class="text-xl font-semibold mb-3 text-blue-600">Terms and Conditions</h2>
+      <div class="space-y-3">
+        <div>
+          <button
+            type="button"
+            (click)="handleLinkClick('terms')"
+            class="text-blue-600 underline text-sm hover:text-green-400 transition-colors duration-200"
+          >
+            Read Terms
+          </button>
+          <span *ngIf="linksClicked.terms" class="ml-2 text-green-500 text-sm">✓ Read</span>
+        </div>
+        <div>
+          <button
+            type="button"
+            (click)="handleLinkClick('privacy')"
+            class="text-blue-600 underline text-sm hover:text-green-400 transition-colors duration-200"
+          >
+            Read Privacy Policy
+          </button>
+          <span *ngIf="linksClicked.privacy" class="ml-2 text-green-500 text-sm">✓ Read</span>
+        </div>
+        <div class="flex items-center">
+          <input
+            type="checkbox"
+            id="consentToTerms"
+            name="consentToTerms"
+            [(ngModel)]="formData.consentToTerms"
+            (change)="handleInputChange($event, 'consentToTerms')"
+            class="h-4 w-4 text-green-400 focus:ring-green-400 border-gray-300 rounded"
+            [disabled]="!canAgree"
+            required
+          />
+          <label for="consentToTerms" class="ml-2 block text-sm" [ngClass]="canAgree ? 'text-gray-700' : 'text-gray-400'">
+            I agree to the Snappy terms and privacy policy.
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="submit"
+      class="w-full bg-blue-600 text-white text-sm font-medium py-3 px-6 rounded-lg hover:bg-green-400 focus:outline-none focus:ring-2 focus:ring-green-400 focus:ring-opacity-50 transition duration-300 ease-in-out"
+    >
+      Register
+    </button>
+  </form>
+</div>

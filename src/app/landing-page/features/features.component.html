@@ -1,0 +1,8 @@
+<section class="grid md:grid-cols-4 gap-8 mb-16">
+  <div *ngFor="let feature of features" class="text-center">
+    <div class="flex justify-center" [innerHTML]="feature.icon"></div>
+    <h3 class="text-xl font-semibold mb-2">{{ feature.title }}</h3>
+    <p class="text-gray-600">{{ feature.description }}</p>
+  </div>
+</section>
+
