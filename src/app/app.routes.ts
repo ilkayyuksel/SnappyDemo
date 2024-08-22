@@ -5,6 +5,7 @@ import {SignUpPageComponent} from "./sign-up-page/sign-up-page.component";
 import {LoginPageComponent} from "./login-page/login-page.component";
 import {LandingPageComponent} from "./landing-page/landing-page.component";
 import {DebtorRegistrationFormComponent} from "./debtor-registration-form/debtor-registration-form.component";
+import {SupplierWelcomePageComponent} from "./supplier-welcome-page/supplier-welcome-page.component";
 
 export const routes: Routes = [
   { path: '', component:  LandingPageComponent},
@@ -13,5 +14,6 @@ export const routes: Routes = [
   { path: 'supplier-onboarding', component: SupplierRegistrationFormComponent },
   { path: 'supplier-dashboard', component: SupplierDashboardComponent },
   { path: 'debtor-onboarding', component: DebtorRegistrationFormComponent },
+  { path: 'supplier-welcome', component: SupplierWelcomePageComponent }
 ];
 
