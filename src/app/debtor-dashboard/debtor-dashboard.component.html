@@ -1,0 +1,13 @@
+<div class="max-w-4xl mx-auto p-4 bg-gray-100">
+
+  <h1 class="text-3xl font-bold text-center mb-8 text-gray-800">Debtor Dashboard</h1>
+
+  <div class="grid gap-8 grid-cols-1 md:grid-cols-2">
+
+    <app-upcoming-payments [payments]="samplePayments"></app-upcoming-payments>
+
+    <app-payment-summary [totalDue]="paymentSummary.totalDue" [totalPaid]="paymentSummary.totalPaid" [remainingBalance]="paymentSummary.remainingBalance"></app-payment-summary>
+
+  </div>
+
+</div>

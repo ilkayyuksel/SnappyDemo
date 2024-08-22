@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, effect, inject} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterOutlet } from '@angular/router';
+import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
 import {HeaderComponent} from "./header/header.component";
 import {FooterComponent} from "./footer/footer.component";
+import {filter} from "rxjs";
 
 @Component({
   selector: 'app-root',
@@ -13,4 +14,16 @@ import {FooterComponent} from "./footer/footer.component";
 })
 export class AppComponent {
   title = 'SnappyClient';
+
+  private router = inject(Router);
+
+  constructor() {
+    effect(() => {
+      this.router.events.pipe(
+        filter((event): event is NavigationEnd => event instanceof NavigationEnd)
+      ).subscribe(() => {
+        window.scrollTo(0, 0);
+      });
+    });
+  }
 }

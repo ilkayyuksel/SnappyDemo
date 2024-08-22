@@ -1,0 +1,33 @@
+<div class="bg-white p-6 rounded-lg shadow-lg">
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Upcoming Payments</h2>
+
+  <div *ngFor="let payment of payments" class="mb-4 p-4 bg-gray-50 rounded-lg shadow">
+    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-2 sm:space-y-0 sm:space-x-4">
+      <div class="flex items-center">
+        <span class="mr-2 text-blue-500">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect>
+            <line x1="16" y1="2" x2="16" y2="6"></line>
+            <line x1="8" y1="2" x2="8" y2="6"></line>
+            <line x1="3" y1="10" x2="21" y2="10"></line>
+          </svg>
+        </span>
+        <span class="text-lg font-medium text-gray-700">
+          {{ formatDate(payment.date) }}
+        </span>
+      </div>
+
+      <div class="text-lg font-medium text-gray-700">{{ payment.creditorName }}</div>
+
+      <div class="flex items-center">
+        <span class="text-lg font-bold text-gray-800">
+          {{ payment.amount.toFixed(2) }} {{ payment.currency }}
+        </span>
+      </div>
+    </div>
+
+    <div class="mt-2 text-sm text-gray-600">
+      Payment ID: {{ payment.id }}
+    </div>
+  </div>
+</div>

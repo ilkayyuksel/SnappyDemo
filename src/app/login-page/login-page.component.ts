@@ -25,7 +25,7 @@ export class LoginPageComponent {
   onLogin(): void {
     if (this.username === 'admin' && this.password === 'admin') {
       this.authService.login(this.username);
-      this.router.navigate(['/dashboard']);
+      this.router.navigate(['/supplier-dashboard']);
     } else {
       this.errorMessage = 'Invalid username or password';
     }

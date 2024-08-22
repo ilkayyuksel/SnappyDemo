@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {NgClass, NgIf} from "@angular/common";
 import {FormsModule} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-debtor-registration-form',
@@ -14,6 +15,8 @@ import {FormsModule} from "@angular/forms";
   styleUrl: './debtor-registration-form.component.css'
 })
 export class DebtorRegistrationFormComponent {
+
+  constructor( private router: Router) {}
 
   formData:any = {
     lastName: '',
@@ -54,7 +57,12 @@ export class DebtorRegistrationFormComponent {
     }
     console.log('Form submitted:', this.formData);
     // Send the form data to the backend here
+
   }
+  navigateToWelcomePage():void{
+    this.router.navigate(['debtor-welcome']);
+  }
+
 }
 
 

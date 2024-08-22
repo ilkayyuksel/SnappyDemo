@@ -177,7 +177,7 @@ export class SupplierDashboardComponent {
   }
 
   createNewSnappy() {
-    alert('Create New Snappy action triggered');
+    this.router.navigate(['snappy-creation'])
   }
 
   generateReport() {

@@ -1,19 +1,24 @@
 import { Component } from '@angular/core';
 import {NgIf} from "@angular/common";
-import {UntypedFormBuilder} from "@angular/forms";
 import {Router} from "@angular/router";
 import {AuthService} from "../utils/auth-service";
 
 @Component({
-  selector: 'app-supplier-welcome-page',
+  selector: 'app-debtor-welcome-page',
   standalone: true,
   imports: [
     NgIf
   ],
-  templateUrl: './supplier-welcome-page.component.html',
-  styleUrl: './supplier-welcome-page.component.css'
+  templateUrl: './debtor-welcome-page.component.html',
+  styleUrl: './debtor-welcome-page.component.css'
 })
-export class SupplierWelcomePageComponent {
+export class DebtorWelcomePageComponent {
+  termsRead = true;
+  privacyRead = true;
+  termsAgreed = false;
+  privacyAgreed = false;
+  showTermsWarning = false;
+  showPrivacyWarning = false;
 
   constructor(private authService: AuthService, private router: Router ) { }
 
@@ -22,13 +27,6 @@ export class SupplierWelcomePageComponent {
     // For demonstration, let's log in the user
     this.authService.login('admin');
   }
-  termsRead = true;
-  privacyRead = true;
-  termsAgreed = false;
-  privacyAgreed = false;
-  showTermsWarning = false;
-  showPrivacyWarning = false;
-
 
   handleTermsAgree(event: Event) {
     const target = event.target as HTMLInputElement;
@@ -56,7 +54,8 @@ export class SupplierWelcomePageComponent {
     if (this.termsAgreed && this.privacyAgreed) {
       this.onComplete();
     }
-    this.router.navigate(['supplier-dashboard']);
+
+    this.router.navigate(['debtor-dashboard']);
 
   }
 
@@ -64,6 +63,5 @@ export class SupplierWelcomePageComponent {
     // You can replace this with any logic you'd like to perform upon completion.
     console.log("Continuing to the dashboard...");
   }
-
 
 }

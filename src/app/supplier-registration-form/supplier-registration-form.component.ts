@@ -48,8 +48,8 @@ export class SupplierRegistrationFormComponent {
     }
   }
 
-  navigateToDashboard() {
-    this.router.navigate(['supplier-dashboard']);
+  navigateToWelcomePage() {
+    this.router.navigate(['supplier-welcome']);
   }
 
   markFormGroupTouched(formGroup: UntypedFormGroup) {

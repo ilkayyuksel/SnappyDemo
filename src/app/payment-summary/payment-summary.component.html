@@ -1,0 +1,33 @@
+<div class="bg-white p-6 rounded-lg shadow-lg">
+
+  <h2 class="text-2xl font-bold mb-6 text-gray-800">Payment Summary</h2>
+
+  <div class="space-y-4">
+
+    <div class="flex justify-between items-center">
+
+      <span class="text-lg text-gray-600">Total Due:</span>
+
+      <span class="text-lg font-bold text-gray-800">{{ totalDue.toFixed(2) }} EUR</span>
+
+    </div>
+
+    <div class="flex justify-between items-center">
+
+      <span class="text-lg text-gray-600">Total Paid:</span>
+
+      <span class="text-lg font-bold text-green-600">{{ totalPaid.toFixed(2) }} EUR</span>
+
+    </div>
+
+    <div class="flex justify-between items-center">
+
+      <span class="text-lg text-gray-600">Remaining Balance:</span>
+
+      <span class="text-lg font-bold text-blue-600">{{ remainingBalance.toFixed(2) }} EUR</span>
+
+    </div>
+
+  </div>
+
+</div>
