@@ -9,6 +9,7 @@ import {SupplierWelcomePageComponent} from "./supplier-welcome-page/supplier-wel
 import {DebtorDashboardComponent} from "./debtor-dashboard/debtor-dashboard.component";
 import {DebtorWelcomePageComponent} from "./debtor-welcome-page/debtor-welcome-page.component";
 import {SnappyCreationFormComponent} from "./snappy-creation-form/snappy-creation-form.component";
+import {SnappyPaymentPlanPreviewComponent} from "./snappy-payment-plan-preview/snappy-payment-plan-preview.component";
 
 export const routes: Routes = [
   { path: '', component:  LandingPageComponent},
@@ -20,6 +21,7 @@ export const routes: Routes = [
   { path: 'supplier-welcome', component: SupplierWelcomePageComponent },
   { path: 'debtor-welcome', component: DebtorWelcomePageComponent },
   { path: 'debtor-dashboard', component: DebtorDashboardComponent },
-  { path: 'snappy-creation', component: SnappyCreationFormComponent }
+  { path: 'snappy-creation', component: SnappyCreationFormComponent },
+  { path: 'snappy-adjust', component: SnappyPaymentPlanPreviewComponent }
 ];
 
