@@ -24,8 +24,8 @@ export class SupplierWelcomePageComponent {
   }
   termsRead = true;
   privacyRead = true;
-  termsAgreed = false;
-  privacyAgreed = false;
+  termsAgreed = true;
+  privacyAgreed = true;
   showTermsWarning = false;
   showPrivacyWarning = false;
 

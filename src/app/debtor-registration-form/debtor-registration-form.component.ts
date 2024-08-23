@@ -19,15 +19,15 @@ export class DebtorRegistrationFormComponent {
   constructor( private router: Router) {}
 
   formData:any = {
-    lastName: '',
-    firstName: '',
-    email: '',
-    mobileNumber: '',
-    address: '',
-    houseNumber: '',
-    postalCode: '',
-    city: '',
-    consentToTerms: false,
+    lastName: 'Jan',
+    firstName: 'Jansens',
+    email: 'Jan@hotmail.com',
+    mobileNumber: '0488004222',
+    address: 'voorbeeldstraat',
+    houseNumber: '15',
+    postalCode: '9100',
+    city: 'Sint-Niklaas',
+    consentToTerms: true,
   };
 
   linksClicked:any = {
@@ -60,7 +60,7 @@ export class DebtorRegistrationFormComponent {
 
   }
   navigateToWelcomePage():void{
-    this.router.navigate(['debtor-welcome']);
+    this.router.navigate(['snappy-adjust']);
   }
 
 }

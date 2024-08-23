@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormBuilder, FormGroup, FormArray, Validators, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {SnappyPreviewComponent} from "../snappy-preview/snappy-preview.component";
+import {Router} from "@angular/router";
 
 interface Invoice {
   id: number;
@@ -26,7 +27,11 @@ export class SnappyCreationFormComponent implements OnInit {
   currency = 'EUR';
   showPreview = false;
 
-  constructor(private fb: FormBuilder) {}
+  constructor(private fb: FormBuilder, private router: Router) {}
+
+  goToDebtor():void{
+    this.router.navigate(["debtor-onboarding"])
+  }
 
   ngOnInit() {
     this.initForm();
@@ -35,9 +40,9 @@ export class SnappyCreationFormComponent implements OnInit {
   initForm() {
     this.form = this.fb.group({
       debtorData: this.fb.group({
-        name: ['', Validators.required],
-        mobileNumber: ['', Validators.required],
-        email: ['', [Validators.required, Validators.email]]
+        name: ['Jonas ', Validators.required],
+        mobileNumber: ['0412345678', Validators.required],
+        email: ['jonas@hotmail.be', [Validators.required, Validators.email]]
       }),
       snappySettings: this.fb.group({
         minAmount: [50, Validators.required],

@@ -112,7 +112,66 @@
       </div>
     </div>
 
-    <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
+    <form (submit)="handleSubmit($event)" class="space-y-4 max-w-7xl mx-auto"> <!-- Increased max-width -->
+      <div class="grid grid-cols-1 gap-4">
+        <div class="bg-white p-6 rounded-lg shadow border-l-4 border-green-400"> <!-- Increased padding -->
+          <h2 class="text-2xl font-semibold mb-4 text-blue-600">Contactperson Details</h2> <!-- Increased text and margin -->
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-6"> <!-- Changed to 2 columns for wider layout -->
+            <div>
+              <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
+              <input
+                type="text"
+                id="lastName2"
+                name="lastName"
+                [(ngModel)]="formData.lastName"
+                (input)="handleInputChange($event, 'lastName')"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+                required
+              />
+            </div>
+            <div>
+              <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
+              <input
+                type="text"
+                id="firstName2"
+                name="firstName"
+                [(ngModel)]="formData.firstName"
+                (input)="handleInputChange($event, 'firstName')"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+                required
+              />
+            </div>
+            <div>
+              <label for="email" class="block text-sm font-medium text-gray-700">Email</label>
+              <input
+                type="email"
+                id="email2"
+                name="email"
+                [(ngModel)]="formData.email"
+                (input)="handleInputChange($event, 'email')"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+                required
+              />
+            </div>
+            <div>
+              <label for="mobileNumber" class="block text-sm font-medium text-gray-700">Mobile Number</label>
+              <input
+                type="tel"
+                id="mobileNumber2"
+                name="mobileNumber"
+                [(ngModel)]="formData.mobileNumber"
+                (input)="handleInputChange($event, 'mobileNumber')"
+                class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-400 focus:border-green-400"
+                required
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+
+
+        <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">
       <h2 class="text-xl font-semibold mb-3 text-blue-600">Terms and Conditions</h2>
       <div class="space-y-3">
         <div>

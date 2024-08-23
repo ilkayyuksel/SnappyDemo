@@ -22,17 +22,17 @@ export class SupplierRegistrationFormComponent {
 
   ngOnInit() {
     this.supplierForm = this.fb.group({
-      companyName: ['', Validators.required],
-      vatNumber: ['', Validators.required],
-      address: ['', Validators.required],
-      postalCode: ['', Validators.required],
-      city: ['', Validators.required],
+      companyName: ['Voorbeeld BV', Validators.required],
+      vatNumber: ['NL123456789B01', Validators.required],
+      address: ['Voorbeeldstraat 123', Validators.required],
+      postalCode: ['1234 AB', Validators.required],
+      city: ['Amsterdam', Validators.required],
       country: ['Nederland', Validators.required],
-      contactName: ['', Validators.required],
-      contactEmail: ['', [Validators.required, Validators.email]],
-      contactPhone: ['', Validators.required],
-      iban: ['', Validators.required],
-      bankName: ['', Validators.required],
+      contactName: ['Jan Jansen', Validators.required],
+      contactEmail: ['jan.jansen@voorbeeld.nl', [Validators.required, Validators.email]],
+      contactPhone: ['06 12345678', Validators.required],
+      iban: ['NL91ABNA0417164300', Validators.required],
+      bankName: ['ABN AMRO', Validators.required],
       maxTerms: [12, [Validators.required, Validators.min(1), Validators.max(60)]],
       minAmount: [50, [Validators.required, Validators.min(0)]],
       interestRate: [5, [Validators.required, Validators.min(0), Validators.max(100)]]

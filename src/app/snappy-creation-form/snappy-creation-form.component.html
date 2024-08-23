@@ -121,10 +121,6 @@
                        class="invoice-input flex-1 border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500">
                 <input type="number" formControlName="amount" placeholder="Amount"
                        class="invoice-input flex-1 border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500">
-                <input type="date" formControlName="startDate" placeholder="Start Date"
-                       class="invoice-input flex-1 border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500">
-                <input type="date" formControlName="endDate" placeholder="End Date"
-                       class="invoice-input flex-1 border border-gray-300 rounded-md shadow-sm p-2 focus:ring-green-500 focus:border-green-500">
                 @if (i > 0) {
                   <button type="button" (click)="removeInvoiceLine(i)"
                           class="p-2 bg-red-500 text-white rounded-md hover:bg-red-600">
@@ -148,7 +144,7 @@
               class="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg">
         Preview Snappy
       </button>
-      <button type="submit"
+      <button (click)="goToDebtor()" type="submit"
               class="px-4 py-2 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors shadow-lg">
         Create Snappy
       </button>

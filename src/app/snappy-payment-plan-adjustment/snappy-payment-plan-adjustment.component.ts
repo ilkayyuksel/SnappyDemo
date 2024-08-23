@@ -1,6 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {FormsModule, UntypedFormBuilder} from "@angular/forms";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-snappy-payment-plan-adjustment',
@@ -18,6 +19,8 @@ export class SnappyPaymentPlanAdjustmentComponent {
   maxPayment!: number;
   installmentAmount!: number;
   months!: number;
+
+  constructor( private router: Router) {}
 
   ngOnInit(): void {
     this.maxPayment = this.debtInfo.totalAmount / 2;
@@ -50,6 +53,7 @@ export class SnappyPaymentPlanAdjustmentComponent {
 
   confirmPaymentPlan(): void {
     console.log('Payment plan confirmed', { installmentAmount: this.installmentAmount, months: this.months });
+    this.router.navigate(['debtor-dashboard']);
   }
 
 }
