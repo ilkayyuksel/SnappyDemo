@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import {UpcomingPaymentsComponent} from "../upcoming-payments/upcoming-payments.component";
 import {PaymentSummaryComponent} from "../payment-summary/payment-summary.component";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-debtor-dashboard',
@@ -15,6 +16,11 @@ import {PaymentSummaryComponent} from "../payment-summary/payment-summary.compon
 export class DebtorDashboardComponent {
 
   // Sample data for payments
+  constructor( private router: Router) {}
+
+  navigateToSupplierDashboard():void{
+    this.router.navigate(["supplier-dashboard"])
+}
 
   samplePayments = [
 
