@@ -5,7 +5,8 @@ export interface SnappyParams {
   totalAmount: number;
   interestRate: number;
   numberOfMonths: number;
-  minimumPayment: number
+  minimumPayment: number;
+  date: Date
 }
 
 @Injectable({
@@ -15,7 +16,7 @@ export class SnappyService {
   private paramsSource = new BehaviorSubject<SnappyParams>({
     totalAmount: 0,
     interestRate: 0,
-    numberOfMonths: 0, minimumPayment:0
+    numberOfMonths: 0, minimumPayment:0, date:new Date()
   });
   currentParams:Observable<SnappyParams> = this.paramsSource.asObservable();
 

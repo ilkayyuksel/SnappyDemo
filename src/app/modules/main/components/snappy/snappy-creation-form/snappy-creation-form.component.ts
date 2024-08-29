@@ -33,7 +33,7 @@ export class SnappyCreationFormComponent implements OnInit {
 
   interestRate: number = 5;
 
-  startDate: string = '';
+  startDate: Date = new Date();
 
   invoices: Invoice[] = [{ number: '', amount: '' }];
 
@@ -71,7 +71,7 @@ export class SnappyCreationFormComponent implements OnInit {
 
     const startDate = new Date(year, nextMonth - 1, 7);
 
-    this.startDate = startDate.toISOString().split('T')[0];
+    this.startDate = new Date(startDate);
 
   }
 
@@ -393,7 +393,7 @@ export class SnappyCreationFormComponent implements OnInit {
     this.snappyService.updateParams({
       totalAmount: this.totalAmount,
       interestRate: this.interestRate,
-      numberOfMonths: this.numberOfMonths, minimumPayment :this.minAmount
+      numberOfMonths: this.numberOfMonths, minimumPayment :this.minAmount, date: this.startDate
     });
     this.router.navigate(["snappy-preview"])
   }

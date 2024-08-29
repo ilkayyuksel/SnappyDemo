@@ -17,7 +17,8 @@ export class SnappyPreviewComponent {
     totalAmount: 0,
     interestRate: 0,
     numberOfMonths: 0,
-    minimumPayment:0
+    minimumPayment:0,
+    date: new Date()
   };
 
   supplierName = 'Test Supplier';
@@ -25,7 +26,7 @@ export class SnappyPreviewComponent {
   monthlyPayment = 0
   interestRate = 0
   numberOfMonths = 0
-  agreementDate = new Date('2023-11-01');
+  agreementDate = new Date();
   executedPayments = [];
   remainingPayments = [];
 
@@ -41,6 +42,7 @@ export class SnappyPreviewComponent {
     this.monthlyPayment = this.params.minimumPayment.valueOf();
     this.interestRate = this.params.interestRate.valueOf()
     this.numberOfMonths = this.params.numberOfMonths.valueOf()
+    this.agreementDate= this.params.date
     this.calculatePaymentPlan();
   }
 
@@ -57,7 +59,7 @@ export class SnappyPreviewComponent {
 
     const paymentPlan = this.snappyDetailsService.calculatePaymentPlan(this.totalDebt, this.monthlyPayment,
       this.interestRate, this.numberOfMonths, this.agreementDate);
-
+    this.executedPayments = paymentPlan.executedPayments;
     this.remainingPayments = paymentPlan.remainingPayments;
   }
 
