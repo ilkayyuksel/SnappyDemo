@@ -1,27 +1,32 @@
 import { Routes } from '@angular/router';
-import {SupplierDashboardComponent} from "./supplier-dashboard/supplier-dashboard.component";
-import {SupplierRegistrationFormComponent} from "./supplier-registration-form/supplier-registration-form.component";
-import {SignUpPageComponent} from "./sign-up-page/sign-up-page.component";
-import {LoginPageComponent} from "./login-page/login-page.component";
-import {LandingPageComponent} from "./landing-page/landing-page.component";
-import {DebtorRegistrationFormComponent} from "./debtor-registration-form/debtor-registration-form.component";
-import {SupplierWelcomePageComponent} from "./supplier-welcome-page/supplier-welcome-page.component";
-import {DebtorDashboardComponent} from "./debtor-dashboard/debtor-dashboard.component";
-import {DebtorWelcomePageComponent} from "./debtor-welcome-page/debtor-welcome-page.component";
-import {SnappyCreationFormComponent} from "./snappy-creation-form/snappy-creation-form.component";
-import {SnappyPaymentPlanPreviewComponent} from "./snappy-payment-plan-preview/snappy-payment-plan-preview.component";
+import {SupplierDashboardComponent} from "./modules/main/components/supplier/dashboard/supplier-dashboard.component";
+import {SupplierRegistrationComponent} from "./modules/main/components/supplier/registration/supplier-registration.component";
+import {SignUpComponent} from "./modules/main/components/sign-up/sign-up.component";
+
+import {LandingComponent} from "./modules/main/components/landing-page/landing.component";
+import {DebtorRegistrationComponent} from "./modules/main/components/debtor/registration/debtor-registration.component";
+import {DebtorDashboardComponent} from "./modules/main/components/debtor/dashboard/debtor-dashboard.component";
+import {DebtorWelcomeComponent} from "./modules/main/components/debtor/welcome/debtor-welcome.component";
+import {LoginComponent} from "./modules/main/components/login/login.component";
+import {SnappyCreationFormComponent} from "./modules/main/components/snappy/snappy-creation-form/snappy-creation-form.component";
+import {SnappyPaymentPlanPreviewComponent} from "./modules/main/components/snappy/snappy-payment-plan-preview/snappy-payment-plan-preview.component";
+import {SupplierWelcomeComponent} from "./modules/main/components/supplier/welcome/supplier-welcome.component";
+import {SnappyPreviewComponent} from "./modules/main/components/snappy/snappy-preview/snappy-preview.component";
+import {SupplierSettingsComponent} from "./modules/main/components/supplier/settings/supplier-settings.component";
 
 export const routes: Routes = [
-  { path: '', component:  LandingPageComponent},
-  { path: 'login', component: LoginPageComponent },
-  { path: 'sign-up', component: SignUpPageComponent },
-  { path: 'supplier-onboarding', component: SupplierRegistrationFormComponent },
-  { path: 'supplier-dashboard', component: SupplierDashboardComponent },
-  { path: 'debtor-onboarding', component: DebtorRegistrationFormComponent },
-  { path: 'supplier-welcome', component: SupplierWelcomePageComponent },
-  { path: 'debtor-welcome', component: DebtorWelcomePageComponent },
+  { path: '', component:  LandingComponent},
+  { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'supplier-onboarding', component: SupplierRegistrationComponent },
   { path: 'debtor-dashboard', component: DebtorDashboardComponent },
+  { path: 'debtor-onboarding', component: DebtorRegistrationComponent },
+  { path: 'supplier-welcome', component: SupplierWelcomeComponent },
+  { path: 'debtor-welcome', component: DebtorWelcomeComponent },
+  { path: 'supplier-dashboard', component: SupplierDashboardComponent },
   { path: 'snappy-creation', component: SnappyCreationFormComponent },
-  { path: 'snappy-adjust', component: SnappyPaymentPlanPreviewComponent }
+  { path: 'snappy-adjust', component: SnappyPaymentPlanPreviewComponent },
+  { path: 'snappy-preview', component: SnappyPreviewComponent },
+  { path: 'supplier-settings', component: SupplierSettingsComponent }
 ];
 

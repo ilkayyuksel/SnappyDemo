@@ -1,0 +1,29 @@
+<header class="bg-white shadow-md">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+    <div class="flex justify-between items-center">
+      <div class="font-bold text-left">
+        <div>Powered by</div>
+        <div>Alternatief BV</div>
+      </div>
+      <div class="flex-grow flex justify-center items-center">
+        <svg class="logo-icon" width="200" height="60" viewBox="0 0 150 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <!-- Lightning bolt icon -->
+          <path d="M13 2L3 14H12L11 22L21 10H12L13 2Z" fill="#4AD5FF" stroke="#4AD5FF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" transform="translate(0, 8) scale(0.9)"/>
+          <!-- Snappy text -->
+          <text x="40" y="28" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#333333">Snappy</text>
+        </svg>
+      </div>
+      <button
+        [ngClass]="{
+          'bg-blue-500 hover:bg-blue-600': !isLoggedIn,
+          'bg-green-500 cursor-default': isLoggedIn
+        }"
+        class="text-white font-bold py-2 px-4 rounded transition duration-300"
+        (click)="navigateToNewPage()"
+        [disabled]="isLoggedIn"
+      >
+        {{ isLoggedIn ? 'Welkom, Jonas' : 'Inloggen' }}
+      </button>
+    </div>
+  </div>
+</header>

@@ -1,0 +1,51 @@
+<div class="container">
+  <h1>Welkom bij Snappy</h1>
+
+  <p>Kies hieronder wat het beste bij u past:</p>
+
+  <div class="frames">
+    @for (type of ['receive', 'pay']; track type) {
+      <div class="frame" [ngStyle]="{'background-color': type === 'receive' ? colors.lightBlue : colors.lightGreen}">
+        <h2 [ngStyle]="{'color': type === 'receive' ? colors.darkBlue : colors.darkGreen}">
+          {{type === 'receive' ? 'Ik moet geld krijgen' : 'Ik moet geld betalen'}}
+        </h2>
+        <div class="role-buttons">
+          @for (role of filterRoles(roles, type); track role.id) {
+            <button
+              (click)="selectRole(role)"
+              [ngStyle]="{
+                'border-color': type === 'receive' ? colors.darkBlue : colors.darkGreen,
+                'background-color': selectedRole?.id === role.id
+                  ? (type === 'receive' ? colors.darkBlue : colors.darkGreen)
+                  : colors.white,
+                'color': selectedRole?.id === role.id ? colors.white : colors.darkGray
+              }"
+            >
+              {{role.description}}
+            </button>
+          }
+        </div>
+      </div>
+    }
+  </div>
+
+  @if (selectedRole) {
+    <div class="selection-info">
+      <p>U heeft gekozen: <strong>{{selectedRole.description}}</strong></p>
+    </div>
+  }
+
+  <div style="display: flex; justify-content: center; align-items: center;">
+    <button
+      (click)="register()"
+      [disabled]="!selectedRole"
+      [ngStyle]="{
+      'background-color': selectedRole ? colors.darkBlue : colors.gray,
+      'color': selectedRole ? colors.white : colors.darkGray,
+      'cursor': selectedRole ? 'pointer' : 'not-allowed'
+    }"
+    >
+      Ga verder
+    </button>
+  </div>
+</div>

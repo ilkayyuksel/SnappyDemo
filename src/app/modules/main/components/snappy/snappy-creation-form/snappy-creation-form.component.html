@@ -1,0 +1,303 @@
+<div class="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-md">
+  <h2 class="text-2xl font-semibold mb-6 text-blue-500">Create New Snappy</h2>
+
+  <!-- New Debtor Data section -->
+  <div class="mb-8 p-4 bg-gray-50 rounded-md border border-gray-200">
+    <h3 class="text-lg font-medium mb-4 text-blue-500">Debtor Data</h3>
+    <div class="grid grid-cols-2 gap-4 mb-4">
+      <div>
+        <label class="block text-sm font-medium text-green-500 mb-2" for="debtorName">
+          Debtor Name
+        </label>
+        <input
+          class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+          id="debtorName"
+          type="text"
+          [(ngModel)]="name"
+        />
+      </div>
+      <div>
+        <label class="block text-sm font-medium text-green-500 mb-2" for="mobileNumber">
+          Mobile Number
+        </label>
+        <input
+          class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+          id="mobileNumber"
+          type="tel"
+          [(ngModel)]="mobileNumber"
+        />
+      </div>
+    </div>
+
+    <div>
+      <label class="block text-sm font-medium text-green-500 mb-2" for="emailAddress">
+        Email Address
+      </label>
+      <input
+        class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+        id="emailAddress"
+        type="email"
+        [(ngModel)]="email"
+      />
+    </div>
+  </div>
+    <div class="max-w-4xl mx-auto mt-10 p-8 bg-white rounded-lg shadow-md">
+
+      <h2 class="text-2xl font-semibold mb-6 text-blue-400">Debt Information</h2>
+
+
+
+      <div class="mb-8 p-4 bg-gray-50 rounded-md border border-gray-200">
+
+        <div class="flex justify-between items-center mb-4">
+
+          <label class="block text-sm font-medium text-green-400" for="totalAmount">
+
+            Total Amount
+
+          </label>
+
+        </div>
+
+        <div class="flex space-x-4">
+
+          <input
+
+            class="w-1/2 p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+            id="totalAmount"
+
+            type="number"
+
+            [(ngModel)]="totalAmount"
+
+            [readonly]="useInvoiceGrid"
+            (blur)="onBlur()"
+
+          />
+
+          <button
+
+            (click)="toggleInvoiceGrid()"
+
+            [ngClass]="{'bg-green-400 text-white': useInvoiceGrid}"
+
+            class="w-1/2 px-4 py-2 border-2 border-green-400 text-green-400 rounded hover:bg-green-400 hover:text-white transition-colors"
+
+          >
+
+            Link Invoices
+
+          </button>
+
+        </div>
+
+        <div *ngIf="useInvoiceGrid" class="mt-4 space-y-2">
+
+          <div *ngFor="let invoice of invoices; let i = index" class="flex space-x-4">
+
+            <input
+
+              class="flex-1 p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+              type="text"
+
+              [id]="'number-' + i"
+
+              [(ngModel)]="invoice.number"
+
+              (ngModelChange)="handleInvoiceChange(i, 'number', $event)"
+
+              (keydown)="onKeyDown($event, i, 'number')"
+
+              placeholder="Invoice number"
+
+            />
+
+            <input
+
+              class="flex-1 p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+              type="number"
+
+              [id]="'amount-' + i"
+
+              [(ngModel)]="invoice.amount"
+
+              (ngModelChange)="handleInvoiceChange(i, 'amount', $event)"
+
+              (keydown)="onKeyDown($event, i, 'amount')"
+
+              placeholder="Amount"
+
+
+            />
+
+            <button
+
+              *ngIf="i > 0"
+
+              (click)="removeInvoice(i)"
+
+              class="px-2 py-1 bg-red-500 text-white rounded hover:bg-red-600 transition-colors"
+
+            >
+
+              Delete
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+
+      <h3 class="text-lg font-medium mb-4 text-blue-400">Changeable parameters of the Snappy</h3>
+
+
+
+      <div class="grid grid-cols-2 gap-6">
+
+        <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+
+          <label class="block text-sm font-medium text-green-400 mb-2" for="minAmount">
+
+            Monthly Amount
+
+          </label>
+
+          <input
+
+            class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+            id="minAmount"
+
+            type="number"
+
+            [(ngModel)]="minAmount"
+
+            (ngModelChange)="handleMinAmountChange($event)"
+
+            (focus)="onFocus('minAmount')"
+
+            (blur)="onBlur()"
+
+            step="5"
+
+            min="5"
+
+          />
+
+        </div>
+
+
+
+        <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+
+          <label class="block text-sm font-medium text-green-400 mb-2" for="numberOfMonths">
+
+            Number of Months
+
+          </label>
+
+          <input
+
+            class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+            id="numberOfMonths"
+
+            type="number"
+
+            [(ngModel)]="numberOfMonths"
+
+            (ngModelChange)="handleNumberOfMonthsChange($event)"
+
+            (focus)="onFocus('numberOfMonths')"
+
+            (blur)="onBlur()"
+
+            min="2"
+
+          />
+
+        </div>
+
+
+
+        <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+
+          <label class="block text-sm font-medium text-green-400 mb-2" for="interestRate">
+
+            Interest Rate (%)
+
+          </label>
+
+          <input
+
+            class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+            id="interestRate"
+
+            type="number"
+
+            [(ngModel)]="interestRate"
+
+            (ngModelChange)="handleInterestRateChange($event)"
+
+            (focus)="onFocus('interestRate')"
+
+            (blur)="onBlur()"
+
+            step="0.5"
+
+            min="0"
+
+          />
+
+        </div>
+
+
+
+        <div class="p-4 bg-gray-50 rounded-md border border-gray-200">
+
+          <label class="block text-sm font-medium text-green-400 mb-2" for="startDate">
+
+            Start Date
+
+          </label>
+
+          <input
+
+            class="w-full p-2 bg-white border border-green-400 rounded-md text-gray-700 focus:outline-none focus:ring-2 focus:ring-green-400 focus:border-transparent"
+
+            id="startDate"
+
+            type="date"
+
+            [(ngModel)]="startDate"
+
+            readonly
+
+          />
+
+        </div>
+
+      </div>
+
+    </div>
+    <!-- Preview and Submit Buttons -->
+    <div class="mt-8 flex justify-between">
+      <button type="button" (click)="togglePreview()"
+              class="px-4 py-1 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg">
+        Preview Snappy
+      </button>
+      <button (click)="goToDebtor()" type="submit"
+              class="px-4 py-1 bg-green-600 text-white rounded-md hover:bg-green-700 transition-colors shadow-lg">
+        Create Snappy
+      </button>
+    </div>
+
+</div>

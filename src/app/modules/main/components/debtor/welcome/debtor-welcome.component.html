@@ -1,0 +1,73 @@
+<!-- debtor-welcome-page.component.html -->
+
+<div class=" p-4 bg-white rounded-lg shadow-xl">
+  <h1 class="text-2xl font-bold mb-4 text-blue-400 text-center">Welcome to Snappy</h1>
+
+  <p class="mb-4">
+    Hello {{debtorName}}, we're here to help resolve your outstanding balance
+    <ng-container *ngIf="formattedDebtAmount !== 'N/A'">of €{{formattedDebtAmount}}</ng-container>
+    with our company, {{creditorName}}.
+  </p>
+
+  <div class="bg-blue-50 p-4 rounded-lg mb-4">
+    <h2 class="text-xl font-semibold mb-2 text-blue-400">Main Advantages of Snappy:</h2>
+    <ul class="space-y-2">
+      <li class="flex items-center">
+        <span class="mr-2 text-green-400">🛡️</span>
+        <span><strong class="text-green-400">Penalty-Free Solution</strong></span>
+      </li>
+      <li class="flex items-center">
+        <span class="mr-2 text-green-400">🕒</span>
+        <span><strong class="text-green-400">Flexible Repayment Options</strong></span>
+      </li>
+      <li class="flex items-center">
+        <span class="mr-2 text-green-400">📈</span>
+        <span><strong class="text-green-400">Opportunity to Shorten Repayment Time</strong></span>
+      </li>
+      <li class="flex items-center">
+        <span class="mr-2 text-green-400">👍</span>
+        <span><strong class="text-green-400">Maintain Good Business Relationship</strong></span>
+      </li>
+    </ul>
+  </div>
+
+  <div class="mb-4">
+    <p class="font-bold">Service fee: €40 (incl. 21% VAT)</p>
+    <p class="text-sm text-gray-600">
+      By paying this one-time fee, you unlock the following features:
+    </p>
+    <ul class="text-sm text-gray-600 list-disc pl-5 mt-2">
+      <li>Your personalized payment plan</li>
+      <li>24/7 online access to your plan details</li>
+      <li>Automated monthly payment reminders</li>
+      <li>Ability to make extra or higher payments, potentially reducing your repayment period</li>
+    </ul>
+  </div>
+
+  <p class="mb-4 text-sm">
+    Offer available for: <span class="font-bold text-blue-500">{{timeLeft}}</span>
+  </p>
+
+  <div class="mb-4">
+    <label class="flex items-center space-x-2">
+      <input
+        type="checkbox"
+        [(ngModel)]="agreedToTerms"
+        class="form-checkbox h-5 w-5 text-blue-600"
+      />
+      <span class="text-sm">
+        I agree to the Terms and Conditions and to the Privacy Policy of Alternatief BV.
+      </span>
+    </label>
+  </div>
+
+  <button
+    (click)="onContinue()"
+    [disabled]="!agreedToTerms"
+    class="w-full bg-blue-500 text-white px-4 py-2 rounded-lg hover:bg-blue-600 transition duration-300 flex items-center justify-center"
+    [ngClass]="{'opacity-50 cursor-not-allowed': !agreedToTerms}"
+  >
+    Review and Confirm
+    <span class="ml-2">➡️</span>
+  </button>
+</div>

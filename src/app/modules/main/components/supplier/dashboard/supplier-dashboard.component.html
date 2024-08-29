@@ -1,0 +1,120 @@
+<div class="min-h-screen bg-gray-100 p-4">
+  <nav class="bg-white shadow-sm mb-4">
+    <div class="max-w-7xl mx-auto px-4 py-2 flex justify-between items-center">
+      <h1 class="text-2xl font-bold text-gray-900">Snappy Supplier Dashboard</h1>
+      <button (click)="navigateToLandingspage()" class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300">
+        Logout
+      </button>
+    </div>
+  </nav>
+
+  <div>
+    <app-actioncard
+      title="Create New Snappy"
+      buttonText="Create New Snappy"
+      icon="add"
+      buttonClass="bg-blue-500 hover:bg-blue-600"
+      (click)="createNewSnappy()">
+    </app-actioncard>
+  </div>
+  <div class="grid grid-cols-2 gap-4 mt-4 mb-4">
+    <app-actioncard
+      title="Generate Report"
+      buttonText="Generate Report"
+      icon="description"
+      buttonClass="bg-green-500 hover:bg-green-600"
+      (click)="generateReport()">
+    </app-actioncard>
+    <app-actioncard
+      title="Settings"
+      buttonText="Settings"
+      icon="settings"
+      buttonClass="bg-gray-500 hover:bg-gray-600"
+      (click)="openSettings()">
+    </app-actioncard>
+  </div>
+
+  <div class="bg-white shadow rounded-lg p-4">
+    <h2 class="text-xl font-semibold text-gray-900 mb-4">Payment Entry</h2>
+    <div class="flex space-x-2 mb-4">
+      <input
+        type="text"
+        name="reference"
+        [(ngModel)]="filters.reference"
+        placeholder="Reference"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="text"
+        name="debtor"
+        [(ngModel)]="filters.debtor"
+        placeholder="Debtor"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="text"
+        name="amount"
+        [(ngModel)]="filters.amount"
+        placeholder="Amount"
+        class="flex-1 p-2 border rounded-md">
+      <input
+        type="date"
+        name="date"
+        [(ngModel)]="filters.date"
+        class="flex-1 p-2 border rounded-md">
+      <button
+        (click)="toggleAdvancedFilters()"
+        class="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded transition duration-300 flex items-center">
+        <mat-icon class="mr-2">filter_list</mat-icon>
+        Filter
+      </button>
+    </div>
+
+    <app-advancedfilters
+      *ngIf="showAdvancedFilters"
+      [filters]="filters"
+      (filterChange)="handleFilterChange($event)"
+      (applyFilters)="applyFilters()">
+    </app-advancedfilters>
+
+    <div class="overflow-x-auto">
+      <!-- Scrollable container with fixed height -->
+      <div class="max-h-64 overflow-y-auto relative">
+        <table class="min-w-full divide-y divide-gray-200">
+          <thead class="bg-gray-50 sticky top-0 z-10">
+          <tr>
+            <th *ngFor="let header of tableHeaders" (click)="handleSort(header.key)" class="bg-gray-50">
+              <div class="flex items-center">
+                {{ header.label }}
+                <mat-icon *ngIf="sortConfig.key === header.key" class="ml-2">
+                  {{ sortConfig.direction === 'ascending' ? 'arrow_upward' : 'arrow_downward' }}
+                </mat-icon>
+              </div>
+            </th>
+          </tr>
+          </thead>
+          <tbody class="bg-white divide-y divide-gray-200">
+          <tr *ngFor="let plan of filteredAndSortedPlans" [ngClass]="{'bg-yellow-50': plan.status === 'Modified'}">
+            <td>{{ plan.reference }}</td>
+            <td>{{ plan.debtor }}</td>
+            <td>
+              <input type="number" [ngModel]="plan.amount" (ngModelChange)="handlePaymentChange(plan.id, 'amount', $event)" class="w-24 px-2 py-1 border rounded">
+            </td>
+            <td>
+              <input type="date" [ngModel]="plan.date" (ngModelChange)="handlePaymentChange(plan.id, 'date', $event)" class="px-2 py-1 border rounded">
+            </td>
+            <td>{{ plan.status }}</td>
+            <td>
+              <button
+                (click)="handleProcessPayment(plan.id)"
+                class="bg-blue-500 text-white hover:bg-blue-600 px-3 py-1 rounded flex items-center"
+                [title]="plan.status === 'Pending' ? 'Confirm Invoice' : 'Save Changes'">
+                <mat-icon>{{ plan.status === 'Pending' ? 'check' : 'save' }}</mat-icon>
+              </button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>

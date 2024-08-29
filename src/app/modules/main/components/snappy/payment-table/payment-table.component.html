@@ -1,0 +1,29 @@
+<div class="payment-schedule overflow-x-auto bg-white rounded-lg shadow-md mb-6">
+  <h3 class="text-xl font-semibold p-4 bg-gradient-to-r from-green-200 to-blue-200">{{ title }}</h3>
+  <table class="min-w-full">
+    <thead class="bg-gray-100">
+    <tr>
+      <th class="py-2 px-4 border-b">{{ isExecuted ? 'Reference' : 'Number' }}</th>
+      <th class="py-2 px-4 border-b">Date</th>
+      <th class="py-2 px-4 border-b">Payment</th>
+      <th class="py-2 px-4 border-b">Capital</th>
+      <th class="py-2 px-4 border-b">Interest</th>
+      <th class="py-2 px-4 border-b">Balance</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <tr *ngFor="let row of payments; let i = index" [class.bg-gray-50]="i % 2 ===
+
+0">
+      <td class="py-2 px-4 border-b text-center">{{ isExecuted ? row.reference : row.number }}</td>
+      <td class="py-2 px-4 border-b text-center">{{ formatDateEU(row.date) }}</td>
+      <td class="py-2 px-4 border-b text-center">{{ formatCurrency(row.payment) }}</td>
+      <td class="py-2 px-4 border-b text-center">{{ formatCurrency(row.capital) }}</td>
+      <td class="py-2 px-4 border-b text-center">{{ formatCurrency(row.interest) }}</td>
+      <td class="py-2 px-4 border-b text-center">{{ formatCurrency(row.balance) }}</td>
+
+    </tr>
+    </tbody>
+  </table>
+</div>

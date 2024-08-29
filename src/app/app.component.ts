@@ -1,9 +1,10 @@
 import {Component, effect, inject} from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {CommonModule, NgClass, NgIf, NgStyle} from '@angular/common';
 import {NavigationEnd, Router, RouterOutlet} from '@angular/router';
-import {HeaderComponent} from "./header/header.component";
-import {FooterComponent} from "./footer/footer.component";
+import {HeaderComponent} from "./modules/shared/components/header/header.component";
+import {FooterComponent} from "./modules/shared/components/footer/footer.component";
 import {filter} from "rxjs";
+import {FormsModule} from "@angular/forms";
 
 @Component({
   selector: 'app-root',

@@ -1,0 +1,86 @@
+<div class="snappy-details p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg shadow-lg">
+
+  <h2 class="text-3xl font-bold mb-6 text-blue-600 text-center">Snappy Details - Updated Status</h2>
+
+
+
+  <!-- Top frames side by side -->
+
+  <div class="flex flex-row gap-6 mb-8">
+    <!-- Supplier Information -->
+
+    <div class="flex-1 bg-white p-6 rounded-lg shadow-md">
+
+      <h3 class="text-xl font-semibold mb-4 text-green-600">Supplier Information</h3>
+
+      <div class="space-y-4">
+
+        <div>
+
+          <label class="block text-sm font-medium text-gray-700">Supplier Name</label>
+
+          <p class="mt-1 text-lg font-semibold">{{ supplierName }}</p>
+
+        </div>
+
+        <div>
+
+          <label class="block text-sm font-medium text-gray-700">Total Debt</label>
+
+          <p class="mt-1 text-lg font-semibold">{{ formatCurrency(totalDebt) }}</p>
+
+        </div>
+
+        <div>
+
+          <label class="block text-sm font-medium text-gray-700">Agreement Date</label>
+
+          <p class="mt-1 text-lg font-semibold">{{ formatDateEU(agreementDate) }}</p>
+
+        </div>
+
+      </div>
+
+    </div>
+
+
+
+    <!-- Payment Terms -->
+
+    <div class="flex-1 bg-white p-6 rounded-lg shadow-md">
+
+      <h3 class="text-xl font-semibold mb-4 text-blue-600">Payment Terms</h3>
+
+      <div class="space-y-4">
+
+        <div>
+
+          <label class="block text-sm font-medium text-gray-700">Monthly Payment</label>
+
+          <p class="mt-1 text-lg font-semibold">{{ formatCurrency(monthlyPayment) }}</p>
+
+        </div>
+
+        <div>
+
+          <label class="block text-sm font-medium text-gray-700">Interest Rate</label>
+
+          <p class="mt-1 text-lg font-semibold">{{ interestRate }}%</p>
+
+        </div>
+
+        <div>
+          <label class="block text-sm font-medium text-gray-700">Number of Months</label>
+          <p class="mt-1 text-lg font-semibold">{{ numberOfMonths }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Payment Tables -->
+
+  <app-payment-table [payments]="remainingPayments" title="Remaining Payments" [isExecuted]="false"></app-payment-table>
+
+  <app-payment-table [payments]="executedPayments" title="Executed Payments" [isExecuted]="true"></app-payment-table>
+
+</div>
