@@ -92,19 +92,22 @@
           </tr>
           </thead>
           <tbody class="bg-white divide-y divide-gray-200">
-          <tr *ngFor="let plan of filteredAndSortedPlans" [ngClass]="{'bg-yellow-50': plan.status === 'Modified'}">
+          <tr *ngFor="let plan of filteredAndSortedPlans" [ngClass]="{
+                'bg-red-100': plan.status === 'Modified',
+                'bg-green-100': plan.status === 'Confirmed'
+              }">
             <td>{{ plan.reference }}</td>
             <td>{{ plan.debtor }}</td>
             <td>
-              <input type="number" [ngModel]="plan.amount" (ngModelChange)="handlePaymentChange(plan.id, 'amount', $event)" class="w-24 px-2 py-1 border rounded">
+              <input type="number"  [disabled]="!canEditAmountAndDate(plan.status)" [ngModel]="plan.amount" (ngModelChange)="handlePaymentChange(plan.id, 'amount', $event)" class="w-24 px-2 py-1 border rounded">
             </td>
             <td>
-              <input type="date" [ngModel]="plan.date" (ngModelChange)="handlePaymentChange(plan.id, 'date', $event)" class="px-2 py-1 border rounded">
+              <input type="date"  [disabled]="!canEditAmountAndDate(plan.status)" [ngModel]="plan.date" (ngModelChange)="handlePaymentChange(plan.id, 'date', $event)" class="px-2 py-1 border rounded">
             </td>
             <td>{{ plan.status }}</td>
             <td>
               <button
-                (click)="handleProcessPayment(plan.id)"
+                (click)="handleProcessPayment(plan.id)"  [ngClass]="{'invisible': !canEditAmountAndDate(plan.status)}"
                 class="bg-blue-500 text-white hover:bg-blue-600 px-3 py-1 rounded flex items-center"
                 [title]="plan.status === 'Pending' ? 'Confirm Invoice' : 'Save Changes'">
                 <mat-icon>{{ plan.status === 'Pending' ? 'check' : 'save' }}</mat-icon>

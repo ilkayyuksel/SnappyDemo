@@ -1,24 +1,39 @@
-import { Component } from '@angular/core';
-import {NgClass, NgIf} from "@angular/common";
-import {FormsModule} from "@angular/forms";
+import {Component, OnInit} from '@angular/core';
+import {NgClass, NgForOf, NgIf} from "@angular/common";
+import {FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 
 @Component({
-  selector: 'app-debtor-registration',
+  selector: 'app-debtor-company-registration',
   standalone: true,
   imports: [
     NgClass,
     FormsModule,
-    NgIf
+    NgIf,
+    NgForOf,
+    ReactiveFormsModule
   ],
-  templateUrl: './debtor-registration.component.html',
-  styleUrl: './debtor-registration.component.css'
+  templateUrl: './debtor-company-registration.component.html',
+  styleUrl: './debtor-company-registration.component.css'
 })
-export class DebtorRegistrationComponent {
+export class DebtorCompanyRegistrationComponent implements OnInit{
+  countries:string[]= ['Nederland', 'België', 'Duitsland']
+  constructor( private router: Router) {
 
-  constructor( private router: Router) {}
+  }
+
+  ngOnInit():void{
+    this.countries = ['Nederland', 'België', 'Duitsland'];
+}
+  isCountryInvalid = false;
 
   formData:any = {
+    companyName: ['Voorbeeld BV', Validators.required],
+    vatNumber: ['NL123456789B01', Validators.required],
+    addressCompany: ['Plezantstraat 123', Validators.required],
+    postalCodeCompany: ['1234 AB', Validators.required],
+    cityCompany: ['Amsterdam', Validators.required],
+    country: ['Nederland'],
     lastName: 'Jan',
     firstName: 'Jansens',
     email: 'Jan@hotmail.com',
@@ -35,6 +50,9 @@ export class DebtorRegistrationComponent {
     privacy: false,
   };
 
+  onCountryChange(value: string) {
+    this.isCountryInvalid = !value;
+  }
   handleInputChange(event: Event, key: string) {
     const target = event.target as HTMLInputElement;
     this.formData[key] = target.type === 'checkbox' ? target.checked : target.value;

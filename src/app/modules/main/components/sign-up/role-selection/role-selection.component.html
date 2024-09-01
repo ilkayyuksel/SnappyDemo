@@ -31,7 +31,7 @@
 
   @if (selectedRole) {
     <div class="selection-info">
-      <p>U heeft gekozen: <strong>{{selectedRole.description}}</strong></p>
+      <p>U heeft gekozen: <strong>{{selectedRole.description | wordReplace:replacements}}</strong></p>
     </div>
   }
 

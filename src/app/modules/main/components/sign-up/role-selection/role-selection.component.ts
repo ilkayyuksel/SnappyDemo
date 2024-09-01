@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import {NgStyle} from "@angular/common";
 import {Router} from "@angular/router";
+import {WordReplacePipe} from "../../../../../util/word-replace-pipe";
+import {id} from "@swimlane/ngx-charts";
 
 interface Role {
   id: string;
@@ -12,7 +14,8 @@ interface Role {
   selector: 'app-role-selection',
   standalone: true,
   imports: [
-    NgStyle
+    NgStyle,
+    WordReplacePipe
   ],
   templateUrl: './role-selection.component.html',
   styleUrl: './role-selection.component.css'
@@ -24,12 +27,16 @@ export class RoleSelectionComponent {
 
   roles: Role[] = [
     { id: 'bedrijf-receive', description: 'Ik ben een bedrijf met openstaande facturen van klanten', type: 'receive' },
-    { id: 'zelfstandige-receive', description: 'Ik ben een zelfstandige met openstaande facturen van klanten', type: 'receive' },
+    { id: 'zelfstandige-receive', description: 'Ik ben een eenmanszaak met openstaande facturen van klanten', type: 'receive' },
     { id: 'particulier-receive', description: 'Ik ben een particulier die geld tegoed heeft', type: 'receive' },
     { id: 'bedrijf-pay', description: 'Ik ben een bedrijf met openstaande leveranciersfacturen', type: 'pay' },
-    { id: 'zelfstandige-pay', description: 'Ik ben een zelfstandige met openstaande leveranciersfacturen', type: 'pay' },
+    { id: 'zelfstandige-pay', description: 'Ik ben een eenmanszaak met openstaande leveranciersfacturen', type: 'pay' },
     { id: 'particulier-pay', description: 'Ik ben een particulier met schulden bij leveranciers', type: 'pay' }
   ];
+
+  replacements = {
+    'openstaande': 'onbetaalde',
+  };
 
   colors = {
     lightBlue: '#E6F3FF',
@@ -52,14 +59,19 @@ export class RoleSelectionComponent {
       if (this.selectedRole?.type === 'receive') {
         this.router.navigate(['supplier-onboarding']);
       } else if (this.selectedRole?.type === 'pay') {
-        this.router.navigate(['debtor-onboarding']);
+        this.router.navigate(['debtor-onboarding']);}
+      else if (this.selectedRole?.id === 'bedrijf-pay' || this.selectedRole?.id === 'zelfstandige-pay') {
+          this.router.navigate(['debtor-company-onboarding']);
+        }
       } else {
         // Handle the case where no role is selected
         console.error('No role selected');
         // Optionally, you could show an error message to the user here
       }
     }
-  }
+
+  protected readonly id = id;
+
 
   filterRoles(roles: Role[], type: string): Role[] {
     return roles.filter(role => role.type === type);

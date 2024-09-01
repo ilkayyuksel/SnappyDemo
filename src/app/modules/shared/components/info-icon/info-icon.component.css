@@ -1,0 +1,35 @@
+.info-icon {
+  display: inline-block;
+  position: relative;
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.info-tooltip {
+  position: absolute;
+  top: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #e6f3ff; /* Lichtblauwe achtergrond */
+  border: 1px solid #b3d9ff; /* Iets donkerdere blauwe rand */
+  padding: 10px;
+  border-radius: 4px;
+  display: none;
+  width: 300px;
+  text-align: left;
+  z-index: 1000;
+  color: #333; /* Donkere tekstkleur voor contrast */
+}
+
+.info-tooltip.visible {
+  display: block;
+}
+
+.info-tooltip p {
+  margin: 0;
+  padding: 2px 0;
+}
+
+.info-tooltip strong {
+  font-weight: 600; /* Iets minder zwaar dan standaard bold voor betere leesbaarheid */
+}

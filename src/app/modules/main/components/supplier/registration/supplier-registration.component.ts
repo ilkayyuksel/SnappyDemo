@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NgForOf, NgIf} from "@angular/common";
 import {Router} from "@angular/router";
+import {InfoIconComponent} from "../../../../shared/components/info-icon/info-icon.component";
+import {MatIcon} from "@angular/material/icon";
 
 @Component({
   selector: 'app-registration',
@@ -9,7 +11,9 @@ import {Router} from "@angular/router";
   imports: [
     ReactiveFormsModule,
     NgIf,
-    NgForOf
+    NgForOf,
+    InfoIconComponent,
+    MatIcon
   ],
   templateUrl: './supplier-registration.component.html',
   styleUrl: './supplier-registration.component.css'

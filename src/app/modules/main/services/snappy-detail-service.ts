@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
 
-
-
 @Injectable({
   providedIn: 'root',
 
@@ -11,8 +9,6 @@ export class SnappyDetailsService {
 
   constructor() {}
 
-
-
   addMonths(date: Date, months: number): Date {
 
     const newDate = new Date(date);
@@ -20,8 +16,6 @@ export class SnappyDetailsService {
     return newDate;
 
   }
-
-
 
   calculatePaymentPlan(totalDebt: number, monthlyPayment: number, interestRate: number, numberOfMonths: number, agreementDate: Date): any {
 
@@ -41,7 +35,6 @@ export class SnappyDetailsService {
     for (let i = 1; i <= numberOfMonths; i++) {
 
       currentDate = this.addMonths(agreementDate, i);
-      currentDate.setDate(7); // Payment on the 7th of each month
 
       const daysInMonth = new Date(currentDate.getFullYear(), currentDate.getMonth() + 1, 0).getDate();
       const interestAmount = (balance * (interestRate / 100) / 365) * daysInMonth;

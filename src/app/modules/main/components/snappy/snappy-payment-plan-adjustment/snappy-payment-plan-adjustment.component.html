@@ -6,8 +6,8 @@
       <i class="lucide-info mr-2 text-blue-500" size="18"></i>
       Schuldinformatie
     </h2>
-    <p class="text-sm"><strong>Totaal bedrag:</strong> €{{ debtInfo.totalAmount.toFixed(2) }}</p>
-    <p class="text-sm"><strong>Minimale maandelijkse betaling:</strong> €{{ debtInfo.minimumPayment.toFixed(2) }}</p>
+    <p class="text-sm ml-2"><strong>Totaal bedrag:</strong> €{{ debtInfo.totalAmount.toFixed(2) }}</p>
+    <p class="text-sm ml-2"><strong>Minimale maandelijkse betaling:</strong> €{{ debtInfo.minimumPayment.toFixed(2) }}</p>
     <p class="text-sm flex items-center mt-2">
       <i class="lucide-calendar mr-2 text-blue-500" size="16"></i>
       <strong>Datum eerste termijn: </strong> {{ formatDate(debtInfo.firstInstallmentDate) }}
@@ -23,7 +23,7 @@
       type="range"
       [min]="debtInfo.minimumPayment"
       [max]="maxPayment"
-      step="1"
+      step="5"
       [(ngModel)]="installmentAmount"
       (input)="handleInstallmentChange($event)"
       class="w-full h-2 bg-blue-200 rounded-lg appearance-none cursor-pointer"

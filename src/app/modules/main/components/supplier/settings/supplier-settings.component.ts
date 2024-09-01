@@ -2,15 +2,17 @@ import { Component } from '@angular/core';
 import {NgForOf, NgIf} from "@angular/common";
 import {ReactiveFormsModule, UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
+import {InfoIconComponent} from "../../../../shared/components/info-icon/info-icon.component";
 
 @Component({
   selector: 'app-settings',
   standalone: true,
-  imports: [
-    NgForOf,
-    NgIf,
-    ReactiveFormsModule
-  ],
+    imports: [
+        NgForOf,
+        NgIf,
+        ReactiveFormsModule,
+        InfoIconComponent
+    ],
   templateUrl: './supplier-settings.component.html',
   styleUrl: './supplier-settings.component.css'
 })

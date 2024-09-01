@@ -33,7 +33,8 @@ export class SnappyCreationFormComponent implements OnInit {
 
   interestRate: number = 5;
 
-  startDate: Date = new Date();
+  startDate?: Date;
+  formattedStartDate?: string;
 
   invoices: Invoice[] = [{ number: '', amount: '' }];
 
@@ -72,9 +73,20 @@ export class SnappyCreationFormComponent implements OnInit {
     const startDate = new Date(year, nextMonth - 1, 7);
 
     this.startDate = new Date(startDate);
+    this.formattedStartDate = this.formatDate(this.startDate);
 
   }
+  formatDate(date: Date): string {
+    const year = date.getFullYear();
+    const month = (date.getMonth() + 1).toString().padStart(2, '0');
+    const day = date.getDate().toString().padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  }
 
+  onDateChange(dateString: string) {
+    this.startDate = new Date(dateString);
+    this.formattedStartDate = dateString;
+  }
 
 
   calculatePaymentPlan(): void {
@@ -388,6 +400,12 @@ export class SnappyCreationFormComponent implements OnInit {
   goToDebtor():void{
     this.router.navigate(["debtor-onboarding"])
   }
+
+  navigateToDashboard():void{
+    this.router.navigate(["supplier-dashboard"])
+  }
+
+
 
   togglePreview() {
     this.snappyService.updateParams({

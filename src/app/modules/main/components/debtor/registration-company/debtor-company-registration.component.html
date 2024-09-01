@@ -1,6 +1,52 @@
 <div class="min-h-screen bg-gradient-to-b from-blue-50 to-green-50 p-4">
   <h1 class="text-2xl font-bold mb-4 text-blue-600 text-center">Snappy Debtor Registration</h1>
 
+  <!-- Bedrijfsinformatie -->
+  <div class="bg-white p-6 mb-4 rounded-lg shadow-md border-t-4 border-green-400">
+    <h2 class="text-2xl font-semibold mb-4 text-blue-600">Bedrijfsinformatie</h2>
+    <div class="grid grid-cols-3 gap-4">
+      <div class="col-span-2">
+        <label for="companyName" class="block text-sm font-medium text-gray-700 mb-1">Bedrijfsnaam</label>
+        <input type="text" id="companyName" formControlName="companyName" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="Voorbeeld BV" required>
+        <div *ngIf="formData.get('companyName')?.touched && formData.get('companyName')?.invalid" class="text-red-500 text-sm mt-1">
+          Bedrijfsnaam is verplicht
+        </div>
+      </div>
+      <div>
+        <label for="vatNumber" class="block text-sm font-medium text-gray-700 mb-1">BTW-nummer</label>
+        <input type="text" id="vatNumber" formControlName="vatNumber" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="NL123456789B01" required>
+        <div *ngIf="formData.get('vatNumber')?.touched && formData.get('vatNumber')?.invalid" class="text-red-500 text-sm mt-1">
+          BTW-nummer is verplicht
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-4">
+      <div class="col-span-2">
+        <label for="address" class="block text-sm font-medium text-gray-700 mb-1">Adres</label>
+        <input type="text" id="addressCompany" formControlName="address" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="Voorbeeldstraat 123" required>
+        <div *ngIf="formData.get('addressCompany')?.touched && formData.get('addressCompany')?.invalid" class="text-red-500 text-sm mt-1">
+          Adres is verplicht
+        </div>
+      </div>
+      <div>
+        <label for="postalCode" class="block text-sm font-medium text-gray-700 mb-1">Postcode</label>
+        <input type="text" id="postalCodeCompany" formControlName="postalCode" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="1234 AB" required>
+        <div *ngIf="formData.get('postalCodeCompany')?.touched && formData.get('postalCodeCompany')?.invalid" class="text-red-500 text-sm mt-1">
+          Postcode is verplicht
+        </div>
+      </div>
+    </div>
+    <div class="grid grid-cols-3 gap-4 mt-4">
+      <div class="col-span-2">
+        <label for="city" class="block text-sm font-medium text-gray-700 mb-1">Plaats</label>
+        <input type="text" id="cityCompany" formControlName="city" class="w-full p-2 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-500 focus:border-transparent" value="Amsterdam" required>
+        <div *ngIf="formData.get('cityCompany')?.touched && formData.get('cityCompany')?.invalid" class="text-red-500 text-sm mt-1">
+          Plaats is verplicht
+        </div>
+      </div>
+    </div>
+  </div>
+
   <form (submit)="handleSubmit($event)" class="space-y-4">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="bg-white p-4 rounded-lg shadow border-l-4 border-green-400">

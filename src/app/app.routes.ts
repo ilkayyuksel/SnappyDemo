@@ -13,6 +13,9 @@ import {SnappyPaymentPlanPreviewComponent} from "./modules/main/components/snapp
 import {SupplierWelcomeComponent} from "./modules/main/components/supplier/welcome/supplier-welcome.component";
 import {SnappyPreviewComponent} from "./modules/main/components/snappy/snappy-preview/snappy-preview.component";
 import {SupplierSettingsComponent} from "./modules/main/components/supplier/settings/supplier-settings.component";
+import {
+  DebtorCompanyRegistrationComponent
+} from "./modules/main/components/debtor/registration-company/debtor-company-registration.component";
 
 export const routes: Routes = [
   { path: '', component:  LandingComponent},
@@ -22,6 +25,7 @@ export const routes: Routes = [
   { path: 'debtor-dashboard', component: DebtorDashboardComponent },
   { path: 'debtor-onboarding', component: DebtorRegistrationComponent },
   { path: 'supplier-welcome', component: SupplierWelcomeComponent },
+  { path: 'debtor-company-onboarding', component: DebtorCompanyRegistrationComponent },
   { path: 'debtor-welcome', component: DebtorWelcomeComponent },
   { path: 'supplier-dashboard', component: SupplierDashboardComponent },
   { path: 'snappy-creation', component: SnappyCreationFormComponent },

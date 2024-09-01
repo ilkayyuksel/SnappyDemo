@@ -56,15 +56,15 @@ export class SupplierDashboardComponent {
   paymentPlans: PaymentPlan[] = [
     { id: 1, reference: 'REF001', debtor: 'Alice Johnson', amount: 1000, date: '2023-07-15', status: 'Pending', originalAmount: 1000, originalDate: '2023-07-15' },
     { id: 2, reference: 'REF002', debtor: 'Bob Smith', amount: 750, date: '2023-07-10', status: 'Pending', originalAmount: 750, originalDate: '2023-07-10' },
-    { id: 3, reference: 'REF003', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 4, reference: 'REF004', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 5, reference: 'REF005', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 6, reference: 'REF006', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 7, reference: 'REF007', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 8, reference: 'REF008', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 9, reference: 'REF009', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 10, reference: 'REF010', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' },
-    { id: 11, reference: 'REF011', debtor: 'Carol Williams', amount: 1200, date: '2023-07-20', status: 'Pending', originalAmount: 1200, originalDate: '2023-07-20' }
+    { id: 3, reference: 'REF003', debtor: 'Carol Williams', amount: 1500, date: '2023-07-20', status: 'Pending', originalAmount: 1500, originalDate: '2023-07-20' },
+    { id: 4, reference: 'REF004', debtor: 'Frank Miller', amount: 100, date: '2023-09-20', status: 'Pending', originalAmount: 100, originalDate: '2023-09-20' },
+    { id: 5, reference: 'REF005', debtor: 'Emma Davis', amount: 1900, date: '2023-08-20', status: 'Pending', originalAmount: 1900, originalDate: '2023-08-20' },
+    { id: 6, reference: 'REF006', debtor: 'Grace Wilson', amount: 1400, date: '2023-02-20', status: 'Pending', originalAmount: 1400, originalDate: '2023-02-20' },
+    { id: 7, reference: 'REF007', debtor: 'Henry Taylor', amount: 1100, date: '2023-01-20', status: 'Pending', originalAmount: 1100, originalDate: '2023-01-20' },
+    { id: 8, reference: 'REF008', debtor: 'Ivy Anderson', amount: 2200, date: '2023-03-20', status: 'Pending', originalAmount: 2200, originalDate: '2023-03-20' },
+    { id: 9, reference: 'REF009', debtor: 'Jack Thomas', amount: 9200, date: '2023-04-20', status: 'Pending', originalAmount: 9200, originalDate: '2023-04-20' },
+    { id: 10, reference: 'REF010', debtor: 'Karen White', amount: 6200, date: '2023-05-20', status: 'Pending', originalAmount: 6200, originalDate: '2023-05-20' },
+    { id: 11, reference: 'REF011', debtor: 'Jan Jansens', amount: 3200, date: '2023-08-20', status: 'Pending', originalAmount: 3200, originalDate: '2023-08-20' }
   ];
 
 
@@ -145,8 +145,9 @@ export class SupplierDashboardComponent {
   }
 
   handlePaymentChange(id: number, field: PaymentPlanUpdateField, value: number | string) {
+
     this.paymentPlans = this.paymentPlans.map(plan => {
-      if (plan.id === id) {
+      if (plan.id === id && this.canEditAmountAndDate(plan.status)) {
         let updatedPlan = { ...plan };
         if (field === 'amount' && typeof value === 'number') {
           updatedPlan.amount = value;
@@ -167,13 +168,23 @@ export class SupplierDashboardComponent {
     });
   }
 
+  isActionDisabled(status: string): boolean {
+    return status === 'Confirmed';
+  }
+
+  canEditAmountAndDate(status: string): boolean {
+    return status !== 'Confirmed';
+  }
+
   handleProcessPayment(id: number) {
     const planIndex = this.paymentPlans.findIndex(p => p.id === id);
     if (planIndex !== -1) {
       const plan = this.paymentPlans[planIndex];
       if (plan.status === 'Pending') {
-        // Remove the invoice from the list as it's now confirmed
-        this.paymentPlans = this.paymentPlans.filter(p => p.id !== id);
+        this.paymentPlans[planIndex] = {
+          ...plan,
+          status: 'Confirmed'
+        };
       } else if (plan.status === 'Modified') {
         // Update the status to 'Pending' and set new original values
         this.paymentPlans[planIndex] = {

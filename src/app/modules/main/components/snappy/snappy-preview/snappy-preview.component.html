@@ -1,7 +1,12 @@
 <div class="snappy-details p-6 bg-gradient-to-br from-green-50 to-blue-50 rounded-lg shadow-lg">
 
-  <h2 class="text-3xl font-bold mb-6 text-blue-600 text-center">Snappy Details - Updated Status</h2>
-
+  <div class="relative flex items-center justify-center mb-6 py-4">
+    <button type="button" (click)="navigateToSnappy()"
+            class="absolute left-0 px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors shadow-lg">
+      &lt; Snappy Creation
+    </button>
+    <h2 class="text-2xl font-semibold text-blue-600">Snappy Details - Updated Status</h2>
+  </div>
 
 
   <!-- Top frames side by side -->
@@ -35,7 +40,7 @@
 
           <label class="block text-sm font-medium text-gray-700">Agreement Date</label>
 
-          <p class="mt-1 text-lg font-semibold">{{ agreementDate }}</p>
+          <p class="mt-1 text-lg font-semibold">{{ formattedDate }}</p>
 
         </div>
 

@@ -1,0 +1,6 @@
+<div class="info-icon" (mouseenter)="showInfo()" (mouseleave)="hideInfo()">
+  <mat-icon class="text-blue-600 mb-2">info</mat-icon>
+  <div class="info-tooltip" [class.visible]="isVisible">
+    {{ infoText }}
+  </div>
+</div>
